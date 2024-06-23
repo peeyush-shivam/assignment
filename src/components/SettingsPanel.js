@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectNode, updateNodeText } from "../redux/flowDataSlice";
 import { TextareaAutosize } from "@mui/base";
@@ -8,13 +8,17 @@ const SettingsPanel = () => {
   const [label, setLabel] = useState(selectedNode?.data?.label || "");
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    setLabel(selectedNode.data.label);
+  }, [selectedNode]);
+
   const handleChange = (event) => {
     //updates the label when the input changes
     setLabel(event.target.value);
   };
 
   const handleSave = () => {
-    dispatch(updateNodeText({ id: selectedNode.id, label: label })); // updates the text inside the node selected through updateNodeText reducer dispatch
+    dispatch(updateNodeText({ id: selectedNode.id, label: label })); // updates the text inside the node selected through updateNodeText reducer
     dispatch(selectNode(null));
   };
 
