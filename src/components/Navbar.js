@@ -21,7 +21,7 @@ const Navbar = () => {
       toast.error("Start adding nodes."); // if no nodes are present, throws error
     } else if (nodesWithMultipleTargets.length > 0) {
       toast.error("Some nodes have empty target handles."); // if  nodes with no source and target edges are present, throws error
-    } else if (nodesWithEmptyLabel > 1) {
+    } else if (nodesWithEmptyLabel.length > 0) {
       toast.error("Some node have empy texts."); // if nodes with no text inside are present, throws error
     } else {
       toast.success("Changes saved successfully."); // if every conditions meets, it saves the data
